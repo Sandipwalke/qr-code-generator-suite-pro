@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator Suite Pro</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>QR Code Generator Suite Pro</h1>
+      <p>Free static suite for generating, designing, and managing QR codes.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>QR Creation Studio</h2>
+        <label>
+          QR Type
+          <select id="qrType"></select>
+        </label>
+        <div id="dynamicFields" class="grid"></div>
+
+        <h3>Design Studio</h3>
+        <div class="grid two">
+          <label>Dot style
+            <select id="dotStyle">
+              <option value="square">Square</option>
+              <option value="dots">Dots</option>
+              <option value="rounded" selected>Rounded</option>
+              <option value="classy">Classy</option>
+              <option value="classy-rounded">Classy Rounded</option>
+              <option value="extra-rounded">Extra Rounded</option>
+            </select>
+          </label>
+          <label>Corner square
+            <select id="cornerSquareStyle">
+              <option value="square">Square</option>
+              <option value="dot" selected>Dot</option>
+              <option value="extra-rounded">Extra Rounded</option>
+            </select>
+          </label>
+          <label>Corner dot
+            <select id="cornerDotStyle">
+              <option value="square">Square</option>
+              <option value="dot" selected>Dot</option>
+            </select>
+          </label>
+          <label>Foreground color<input id="fgColor" type="color" value="#111827" /></label>
+          <label>Background color<input id="bgColor" type="color" value="#ffffff" /></label>
+          <label>Size (px)<input id="size" type="number" min="128" max="1024" step="16" value="320" /></label>
+          <label>Error correction
+            <select id="ecLevel">
+              <option value="L">L</option>
+              <option value="M">M</option>
+              <option value="Q" selected>Q</option>
+              <option value="H">H</option>
+            </select>
+          </label>
+          <label>Margin<input id="margin" type="number" min="0" max="40" value="8" /></label>
+        </div>
+
+        <div class="actions">
+          <button id="generateBtn">Generate QR</button>
+          <button id="savePresetBtn">Save Preset</button>
+          <button id="exportPngBtn">Export PNG</button>
+          <button id="exportSvgBtn">Export SVG</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Preview</h2>
+        <div id="qrCanvas"></div>
+        <label>Logo URL (optional)<input id="logoUrl" type="url" placeholder="https://..." /></label>
+        <p class="small" id="status"></p>
+      </section>
+
+      <section class="card">
+        <h2>Batch Generator</h2>
+        <p class="small">One payload per line. Generates PNG ZIP-like downloads one-by-one in browser.</p>
+        <textarea id="batchInput" rows="8" placeholder="https://example.com/a&#10;https://example.com/b"></textarea>
+        <div class="actions">
+          <button id="batchGenerateBtn">Generate Batch</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Saved Presets</h2>
+        <div id="presetList" class="list"></div>
+      </section>
+
+      <section class="card">
+        <h2>API Key Manager + Local API Playground</h2>
+        <div class="grid two">
+          <label>Key label<input id="apiLabel" type="text" placeholder="my-app" /></label>
+          <label>Scope
+            <select id="apiScope">
+              <option value="read">read</option>
+              <option value="write" selected>write</option>
+              <option value="admin">admin</option>
+            </select>
+          </label>
+        </div>
+        <button id="createKeyBtn">Create API Key</button>
+        <p class="small" id="keyReveal"></p>
+
+        <h3>Keys</h3>
+        <div id="apiKeys" class="list"></div>
+
+        <h3>Simulated API Request</h3>
+        <textarea id="apiPayload" rows="6">{
+  "type": "url",
+  "url": "https://example.com"
+}</textarea>
+        <button id="runApiBtn">Run Local API Call</button>
+        <pre id="apiResult"></pre>
+      </section>
+    </main>
+
+    <footer>
+      <p>Phase 1 static build for GitHub Pages. Data is stored in your browser.</p>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
